@@ -4,14 +4,14 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{550185FD-3D42-4427-AB84-5CF44F53B078}</ProjectGuid>
+    <ProjectGuid>{3C45A99B-6653-4FCA-929D-7023B135CEFC}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <StartupObject>XCS_11.My.MyApplication</StartupObject>
     <RootNamespace>XCS_11</RootNamespace>
     <AssemblyName>XCS-11</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <MyType>WindowsForms</MyType>
-    <TargetFrameworkVersion>v4.8.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
   </PropertyGroup>
@@ -48,6 +48,9 @@
     <OptionInfer>On</OptionInfer>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EasyModbus, Version=5.6.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\EasyModbusTCP.5.6.0\lib\net40\EasyModbus.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
@@ -73,13 +76,48 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form1.vb">
+    <Compile Include="Declaration.vb" />
+    <Compile Include="frmDatabase.Designer.vb">
+      <DependentUpon>frmDatabase.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmDatabase.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.vb">
-      <DependentUpon>Form1.vb</DependentUpon>
+    <Compile Include="frmFeedback.Designer.vb">
+      <DependentUpon>frmFeedback.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmFeedback.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="frmMain.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMain.Designer.vb">
+      <DependentUpon>frmMain.vb</DependentUpon>
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMaterial.Designer.vb">
+      <DependentUpon>frmMaterial.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmMaterial.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmModbus.Designer.vb">
+      <DependentUpon>frmModbus.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmModbus.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMsg.Designer.vb">
+      <DependentUpon>frmMsg.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmMsg.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="KoneksiDB.vb" />
+    <Compile Include="modGeneral.vb" />
+    <Compile Include="modReadWrite.vb" />
+    <Compile Include="modZebraUSB.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -95,8 +133,27 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="RFID.vb" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="frmDatabase.resx">
+      <DependentUpon>frmDatabase.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmFeedback.resx">
+      <DependentUpon>frmFeedback.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmMain.resx">
+      <DependentUpon>frmMain.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmMaterial.resx">
+      <DependentUpon>frmMaterial.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmModbus.resx">
+      <DependentUpon>frmModbus.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmMsg.resx">
+      <DependentUpon>frmMsg.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
@@ -115,6 +172,34 @@
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
     <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\EXITWIN.ICO" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\EYE.ICO" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\debug.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\spec.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\MISC05.ICO" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ARW09LT.ICO" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Fail.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Pass.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ARW09LT1.ICO" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>
