@@ -23,6 +23,7 @@ Partial Class frmMain
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmMain))
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label3 = New System.Windows.Forms.Label()
@@ -43,6 +44,7 @@ Partial Class frmMain
         Me.Label15 = New System.Windows.Forms.Label()
         Me.lbl_msg = New System.Windows.Forms.Label()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.Ethernet = New System.Windows.Forms.PictureBox()
         Me.Label20 = New System.Windows.Forms.Label()
         Me.Label19 = New System.Windows.Forms.Label()
         Me.Label18 = New System.Windows.Forms.Label()
@@ -51,6 +53,7 @@ Partial Class frmMain
         Me.Label21 = New System.Windows.Forms.Label()
         Me.TextBox4 = New System.Windows.Forms.TextBox()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
+        Me.PictureBox2 = New System.Windows.Forms.PictureBox()
         Me.lbl_fw = New System.Windows.Forms.Label()
         Me.lbl_datecode = New System.Windows.Forms.Label()
         Me.lbl_articlenos = New System.Windows.Forms.Label()
@@ -80,13 +83,11 @@ Partial Class frmMain
         Me.Button4 = New System.Windows.Forms.Button()
         Me.Button3 = New System.Windows.Forms.Button()
         Me.Button2 = New System.Windows.Forms.Button()
-        Me.PictureBox2 = New System.Windows.Forms.PictureBox()
-        Me.Ethernet = New System.Windows.Forms.PictureBox()
         Me.GroupBox1.SuspendLayout()
-        Me.GroupBox2.SuspendLayout()
-        CType(Me.PictureBox3, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Ethernet, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.GroupBox2.SuspendLayout()
+        CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PictureBox3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Label1
@@ -299,6 +300,15 @@ Partial Class frmMain
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Ethernet Connection"
         '
+        'Ethernet
+        '
+        Me.Ethernet.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.Ethernet.Location = New System.Drawing.Point(6, 21)
+        Me.Ethernet.Name = "Ethernet"
+        Me.Ethernet.Size = New System.Drawing.Size(15, 15)
+        Me.Ethernet.TabIndex = 4
+        Me.Ethernet.TabStop = False
+        '
         'Label20
         '
         Me.Label20.AutoSize = True
@@ -400,6 +410,15 @@ Partial Class frmMain
         Me.GroupBox2.Size = New System.Drawing.Size(428, 557)
         Me.GroupBox2.TabIndex = 10
         Me.GroupBox2.TabStop = False
+        '
+        'PictureBox2
+        '
+        Me.PictureBox2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.PictureBox2.Location = New System.Drawing.Point(300, 163)
+        Me.PictureBox2.Name = "PictureBox2"
+        Me.PictureBox2.Size = New System.Drawing.Size(100, 142)
+        Me.PictureBox2.TabIndex = 9
+        Me.PictureBox2.TabStop = False
         '
         'lbl_fw
         '
@@ -530,6 +549,7 @@ Partial Class frmMain
         '
         'Barcode_Comm
         '
+        Me.Barcode_Comm.PortName = "COM8"
         '
         'TextBox5
         '
@@ -618,7 +638,7 @@ Partial Class frmMain
         '
         'Button5
         '
-        Me.Button5.Image = Global.XCS_11.My.Resources.Resources.MISC05
+        Me.Button5.Image = CType(resources.GetObject("Button5.Image"), System.Drawing.Image)
         Me.Button5.Location = New System.Drawing.Point(716, 254)
         Me.Button5.Name = "Button5"
         Me.Button5.Size = New System.Drawing.Size(72, 70)
@@ -629,7 +649,7 @@ Partial Class frmMain
         '
         'Button4
         '
-        Me.Button4.Image = Global.XCS_11.My.Resources.Resources.spec
+        Me.Button4.Image = CType(resources.GetObject("Button4.Image"), System.Drawing.Image)
         Me.Button4.Location = New System.Drawing.Point(716, 166)
         Me.Button4.Name = "Button4"
         Me.Button4.Size = New System.Drawing.Size(72, 70)
@@ -640,7 +660,7 @@ Partial Class frmMain
         '
         'Button3
         '
-        Me.Button3.Image = Global.XCS_11.My.Resources.Resources.debug
+        Me.Button3.Image = CType(resources.GetObject("Button3.Image"), System.Drawing.Image)
         Me.Button3.Location = New System.Drawing.Point(716, 90)
         Me.Button3.Name = "Button3"
         Me.Button3.Size = New System.Drawing.Size(72, 70)
@@ -651,7 +671,7 @@ Partial Class frmMain
         '
         'Button2
         '
-        Me.Button2.Image = Global.XCS_11.My.Resources.Resources.EXITWIN
+        Me.Button2.Image = CType(resources.GetObject("Button2.Image"), System.Drawing.Image)
         Me.Button2.Location = New System.Drawing.Point(716, 14)
         Me.Button2.Name = "Button2"
         Me.Button2.Size = New System.Drawing.Size(72, 70)
@@ -659,23 +679,6 @@ Partial Class frmMain
         Me.Button2.Text = "Quit"
         Me.Button2.TextAlign = System.Drawing.ContentAlignment.BottomCenter
         Me.Button2.UseVisualStyleBackColor = True
-        '
-        'PictureBox2
-        '
-        Me.PictureBox2.Location = New System.Drawing.Point(300, 163)
-        Me.PictureBox2.Name = "PictureBox2"
-        Me.PictureBox2.Size = New System.Drawing.Size(100, 142)
-        Me.PictureBox2.TabIndex = 9
-        Me.PictureBox2.TabStop = False
-        '
-        'Ethernet
-        '
-        Me.Ethernet.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.Ethernet.Location = New System.Drawing.Point(6, 21)
-        Me.Ethernet.Name = "Ethernet"
-        Me.Ethernet.Size = New System.Drawing.Size(15, 15)
-        Me.Ethernet.TabIndex = 4
-        Me.Ethernet.TabStop = False
         '
         'frmMain
         '
@@ -712,11 +715,11 @@ Partial Class frmMain
         Me.Text = " "
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
+        CType(Me.Ethernet, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBox2.ResumeLayout(False)
         Me.GroupBox2.PerformLayout()
-        CType(Me.PictureBox3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.Ethernet, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PictureBox3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 

@@ -8,6 +8,7 @@ Public Class frmMain
     Public ItemsScanCompleteFlag As Boolean 'True when all items are scanned
     Public ScanMode As Integer
     Dim AssyBuf As String
+    Dim currentDate As DateTime = DateTime.Now
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         If Dir(My.Application.Info.DirectoryPath & "\Config.INI") = "" Then
             MsgBox("Config.INI is missing")
@@ -22,6 +23,7 @@ Public Class frmMain
         frmMsg.Label1.Text = "Establishing connection with PLC..."
         frmModbus.Show()
         frmModbus.Hide()
+        Thread.Sleep(10)
         Reset_PLC()
         frmMsg.Label1.Text = "Loading parameters..."
         'Load parameters
@@ -72,7 +74,8 @@ Public Class frmMain
         End If
 
         'RFID_Comm.Open()
-        'Barcode_Comm.Open()
+        Barcode_Comm.Open()
+
         frmMsg.Hide()
         'Timer1.Enabled = True
     End Sub
@@ -378,10 +381,10 @@ NoChange:
                         Txt_Msg.Text = "--> Unable to communicate with PLC - %MW101"
                         Exit Sub
                     End If
-                    PSNFileInfo.BodyAssyCheckOut = DateString & "," & Now.ToLongTimeString
+                    PSNFileInfo.BodyAssyCheckOut = currentDate.Date & "," & Now.ToLongTimeString
                     PSNFileInfo.BodyAssyStatus = "PASS"
                     BodyTest = True
-                    PictureBox2.Image = My.Resources.ResourceManager.GetObject("PASS")
+                    PictureBox2.Image = My.Resources.ResourceManager.GetObject("Pass")
                     PictureBox2.SizeMode = PictureBoxSizeMode.Zoom
                     Action = 1
                 Else 'Fail
@@ -422,7 +425,7 @@ NoChange:
                     lbl_lastcounter.Text = Check_Serialnos(LoadWOfrRFID.JobArticle & "001" & UnitaryDateCode)
                     PSNFileInfo.PSN = LoadWOfrRFID.JobArticle & "001" & UnitaryDateCode & NextCounter(lbl_lastcounter.Text)
                     lbl_psn.Text = PSNFileInfo.PSN
-                    PSNFileInfo.DateCreated = DateString & "," & Now.ToLongTimeString
+                    PSNFileInfo.DateCreated = currentDate.Date & "," & Now.ToLongTimeString
 
                     'Print label
                     Txt_Msg.Text = "Printing PSN label..." & vbCrLf
@@ -710,10 +713,12 @@ ErrorHandler:
     End Sub
 
     Private Sub Barcode_Comm_DataReceived(sender As Object, e As IO.Ports.SerialDataReceivedEventArgs) Handles Barcode_Comm.DataReceived
+        Console.WriteLine(currentDate.Date & "," & Now.ToLongTimeString)
         If ScanMode = 0 Then
             AssyBuf = Barcode_Comm.ReadExisting()
             If InStr(1, AssyBuf, vbCrLf) <> 0 Then
                 Me.Invoke(Sub()
+                              Console.WriteLine("Invoke")
                               Txt_Msg.BackColor = Color.LightGray
                               Txt_Msg.Text = ""
                               Label12.Text = ""
@@ -736,7 +741,7 @@ ErrorHandler:
                                       PCBAFLAG(1) = True
                                       PSNFileInfo.MainPCBA = AssyBuf
                                       If PSNFileInfo.BodyAssyCheckIn = "" Then
-                                          PSNFileInfo.BodyAssyCheckIn = DateString & "," & Now.ToLongTimeString
+                                          PSNFileInfo.BodyAssyCheckIn = currentDate.Date & "," & Now.ToLongTimeString
                                       End If
                                       TextBox3.Text = AssyBuf
                                       TextBox3.BackColor = Color.Green
@@ -753,7 +758,7 @@ ErrorHandler:
                                       PCBAFLAG(2) = True
                                       PSNFileInfo.ElectroMagnet = AssyBuf
                                       If PSNFileInfo.BodyAssyCheckIn = "" Then
-                                          PSNFileInfo.BodyAssyCheckIn = DateString & "," & Now.ToLongTimeString
+                                          PSNFileInfo.BodyAssyCheckIn = currentDate.Date & "," & Now.ToLongTimeString
                                       End If
                                       TextBox2.Text = AssyBuf
                                       TextBox2.BackColor = Color.Green
@@ -766,7 +771,7 @@ ErrorHandler:
                               End If
                               Txt_Msg.Text = Txt_Msg.Text & "--> Incorrect item for selected reference"
                               Txt_Msg.BackColor = Color.Red
-                              PictureBox2.Image = My.Resources.ResourceManager.GetObject("FAIL")
+                              PictureBox2.Image = My.Resources.ResourceManager.GetObject("Fail")
                               PictureBox2.SizeMode = PictureBoxSizeMode.Zoom
                               AssyBuf = ""
                               Exit Sub

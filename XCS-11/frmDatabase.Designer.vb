@@ -22,6 +22,7 @@ Partial Class frmDatabase
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmDatabase))
         Me.ComboBox1 = New System.Windows.Forms.ComboBox()
         Me.TextBox101 = New System.Windows.Forms.TextBox()
         Me.TextBox102 = New System.Windows.Forms.TextBox()
@@ -117,7 +118,7 @@ Partial Class frmDatabase
         '
         'Button1
         '
-        Me.Button1.Image = Global.XCS_11.My.Resources.Resources.ARW09LT
+        Me.Button1.Image = CType(resources.GetObject("Button1.Image"), System.Drawing.Image)
         Me.Button1.Location = New System.Drawing.Point(694, 58)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(75, 72)

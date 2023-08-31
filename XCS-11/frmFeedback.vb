@@ -9,7 +9,7 @@
         Atfile$ = "Cancel.Txt" '"WO" & Year(Date) & Format(Date, "ww", vbSunday, vbFirstFullWeek) & ".CSV"
         Fileloc$ = My.Application.Info.DirectoryPath & "\" & Atfile$
 
-        MyMsg = currentDate.Date & "/" & currentDate.Month & "/" & currentDate.Year
+        MyMsg = currentDate.Date
         Filenos = FreeFile()
         FileOpen(Filenos, Fileloc$, OpenMode.Append) 'MyMsg; ","; Time; ","; Label1.Caption
         PrintLine(Filenos, MyMsg & "," & Now.ToLongTimeString & "," & Label1.Text)

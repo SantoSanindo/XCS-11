@@ -22,6 +22,7 @@ Partial Class frmModbus
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmModbus))
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.txtIP = New System.Windows.Forms.TextBox()
@@ -198,7 +199,7 @@ Partial Class frmModbus
         '
         'Button5
         '
-        Me.Button5.Image = Global.XCS_11.My.Resources.Resources.ARW09LT
+        Me.Button5.Image = CType(resources.GetObject("Button5.Image"), System.Drawing.Image)
         Me.Button5.Location = New System.Drawing.Point(301, 249)
         Me.Button5.Name = "Button5"
         Me.Button5.Size = New System.Drawing.Size(64, 64)
