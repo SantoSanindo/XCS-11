@@ -176,13 +176,13 @@ ErrorHandler:
             Job.JobModelMaterial(i) = LineStr
             i = i + 1
         Loop
+        FileClose(Fnum)
         Return True
 ErrorHandler:
         Return False
     End Function
     Private Function ActivateRackLED() As Boolean
         Dim i, N As Integer
-        Dim Job As JobOrder
         ReDim Job.JobModelMaterial(30)
         On Error GoTo ErrorHandler
         For i = 0 To 29
