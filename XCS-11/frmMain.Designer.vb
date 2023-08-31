@@ -44,7 +44,6 @@ Partial Class frmMain
         Me.Label15 = New System.Windows.Forms.Label()
         Me.lbl_msg = New System.Windows.Forms.Label()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
-        Me.Ethernet = New System.Windows.Forms.PictureBox()
         Me.Label20 = New System.Windows.Forms.Label()
         Me.Label19 = New System.Windows.Forms.Label()
         Me.Label18 = New System.Windows.Forms.Label()
@@ -53,7 +52,6 @@ Partial Class frmMain
         Me.Label21 = New System.Windows.Forms.Label()
         Me.TextBox4 = New System.Windows.Forms.TextBox()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
-        Me.PictureBox2 = New System.Windows.Forms.PictureBox()
         Me.lbl_fw = New System.Windows.Forms.Label()
         Me.lbl_datecode = New System.Windows.Forms.Label()
         Me.lbl_articlenos = New System.Windows.Forms.Label()
@@ -83,11 +81,13 @@ Partial Class frmMain
         Me.Button4 = New System.Windows.Forms.Button()
         Me.Button3 = New System.Windows.Forms.Button()
         Me.Button2 = New System.Windows.Forms.Button()
+        Me.PictureBox2 = New System.Windows.Forms.PictureBox()
+        Me.Ethernet = New System.Windows.Forms.PictureBox()
         Me.GroupBox1.SuspendLayout()
-        CType(Me.Ethernet, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox2.SuspendLayout()
-        CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox3, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.Ethernet, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Label1
@@ -300,15 +300,6 @@ Partial Class frmMain
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Ethernet Connection"
         '
-        'Ethernet
-        '
-        Me.Ethernet.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.Ethernet.Location = New System.Drawing.Point(6, 21)
-        Me.Ethernet.Name = "Ethernet"
-        Me.Ethernet.Size = New System.Drawing.Size(15, 15)
-        Me.Ethernet.TabIndex = 4
-        Me.Ethernet.TabStop = False
-        '
         'Label20
         '
         Me.Label20.AutoSize = True
@@ -361,6 +352,7 @@ Partial Class frmMain
         Me.Button1.TabIndex = 6
         Me.Button1.Text = "READ PLC"
         Me.Button1.UseVisualStyleBackColor = True
+        Me.Button1.Visible = False
         '
         'Label21
         '
@@ -410,15 +402,6 @@ Partial Class frmMain
         Me.GroupBox2.Size = New System.Drawing.Size(428, 557)
         Me.GroupBox2.TabIndex = 10
         Me.GroupBox2.TabStop = False
-        '
-        'PictureBox2
-        '
-        Me.PictureBox2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.PictureBox2.Location = New System.Drawing.Point(300, 163)
-        Me.PictureBox2.Name = "PictureBox2"
-        Me.PictureBox2.Size = New System.Drawing.Size(100, 142)
-        Me.PictureBox2.TabIndex = 9
-        Me.PictureBox2.TabStop = False
         '
         'lbl_fw
         '
@@ -480,7 +463,7 @@ Partial Class frmMain
         Me.Label22.AutoSize = True
         Me.Label22.Font = New System.Drawing.Font("Arial", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label22.ForeColor = System.Drawing.Color.DarkGreen
-        Me.Label22.Location = New System.Drawing.Point(441, 9)
+        Me.Label22.Location = New System.Drawing.Point(529, 7)
         Me.Label22.Name = "Label22"
         Me.Label22.Size = New System.Drawing.Size(101, 19)
         Me.Label22.TabIndex = 0
@@ -491,7 +474,7 @@ Partial Class frmMain
         Me.lbl_currcounter.AutoSize = True
         Me.lbl_currcounter.Font = New System.Drawing.Font("Arial", 36.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lbl_currcounter.ForeColor = System.Drawing.Color.DarkGreen
-        Me.lbl_currcounter.Location = New System.Drawing.Point(469, 25)
+        Me.lbl_currcounter.Location = New System.Drawing.Point(557, 23)
         Me.lbl_currcounter.Name = "lbl_currcounter"
         Me.lbl_currcounter.Size = New System.Drawing.Size(51, 56)
         Me.lbl_currcounter.TabIndex = 0
@@ -502,7 +485,7 @@ Partial Class frmMain
         Me.Label24.AutoSize = True
         Me.Label24.Font = New System.Drawing.Font("Arial", 48.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label24.ForeColor = System.Drawing.Color.DarkGreen
-        Me.Label24.Location = New System.Drawing.Point(562, 9)
+        Me.Label24.Location = New System.Drawing.Point(717, 10)
         Me.Label24.Name = "Label24"
         Me.Label24.Size = New System.Drawing.Size(119, 72)
         Me.Label24.TabIndex = 0
@@ -510,7 +493,7 @@ Partial Class frmMain
         '
         'Button7
         '
-        Me.Button7.Location = New System.Drawing.Point(716, 502)
+        Me.Button7.Location = New System.Drawing.Point(934, 500)
         Me.Button7.Name = "Button7"
         Me.Button7.Size = New System.Drawing.Size(72, 70)
         Me.Button7.TabIndex = 11
@@ -519,7 +502,7 @@ Partial Class frmMain
         '
         'Button8
         '
-        Me.Button8.Location = New System.Drawing.Point(716, 426)
+        Me.Button8.Location = New System.Drawing.Point(934, 424)
         Me.Button8.Name = "Button8"
         Me.Button8.Size = New System.Drawing.Size(72, 70)
         Me.Button8.TabIndex = 11
@@ -528,7 +511,7 @@ Partial Class frmMain
         '
         'Button9
         '
-        Me.Button9.Location = New System.Drawing.Point(716, 351)
+        Me.Button9.Location = New System.Drawing.Point(934, 349)
         Me.Button9.Name = "Button9"
         Me.Button9.Size = New System.Drawing.Size(72, 70)
         Me.Button9.TabIndex = 11
@@ -543,9 +526,15 @@ Partial Class frmMain
         Me.Button10.TabIndex = 6
         Me.Button10.Text = "Zbr Print?"
         Me.Button10.UseVisualStyleBackColor = True
+        Me.Button10.Visible = False
         '
         'Timer1
         '
+        '
+        'Timer2
+        '
+        Me.Timer2.Enabled = True
+        Me.Timer2.Interval = 3000
         '
         'Barcode_Comm
         '
@@ -557,6 +546,7 @@ Partial Class frmMain
         Me.TextBox5.Name = "TextBox5"
         Me.TextBox5.Size = New System.Drawing.Size(137, 20)
         Me.TextBox5.TabIndex = 3
+        Me.TextBox5.Visible = False
         '
         'TextBox6
         '
@@ -564,6 +554,7 @@ Partial Class frmMain
         Me.TextBox6.Name = "TextBox6"
         Me.TextBox6.Size = New System.Drawing.Size(108, 20)
         Me.TextBox6.TabIndex = 3
+        Me.TextBox6.Visible = False
         '
         'TextBox7
         '
@@ -571,6 +562,7 @@ Partial Class frmMain
         Me.TextBox7.Name = "TextBox7"
         Me.TextBox7.Size = New System.Drawing.Size(108, 20)
         Me.TextBox7.TabIndex = 3
+        Me.TextBox7.Visible = False
         '
         'lbl_WOnos
         '
@@ -619,16 +611,17 @@ Partial Class frmMain
         'PictureBox3
         '
         Me.PictureBox3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.PictureBox3.Location = New System.Drawing.Point(434, 99)
+        Me.PictureBox3.ErrorImage = Nothing
+        Me.PictureBox3.Location = New System.Drawing.Point(434, 91)
         Me.PictureBox3.Name = "PictureBox3"
-        Me.PictureBox3.Size = New System.Drawing.Size(263, 468)
+        Me.PictureBox3.Size = New System.Drawing.Size(458, 476)
         Me.PictureBox3.TabIndex = 12
         Me.PictureBox3.TabStop = False
         '
         'Button6
         '
         Me.Button6.Image = Global.XCS_11.My.Resources.Resources.EYE
-        Me.Button6.Location = New System.Drawing.Point(716, 578)
+        Me.Button6.Location = New System.Drawing.Point(934, 576)
         Me.Button6.Name = "Button6"
         Me.Button6.Size = New System.Drawing.Size(72, 70)
         Me.Button6.TabIndex = 11
@@ -639,7 +632,7 @@ Partial Class frmMain
         'Button5
         '
         Me.Button5.Image = CType(resources.GetObject("Button5.Image"), System.Drawing.Image)
-        Me.Button5.Location = New System.Drawing.Point(716, 254)
+        Me.Button5.Location = New System.Drawing.Point(934, 252)
         Me.Button5.Name = "Button5"
         Me.Button5.Size = New System.Drawing.Size(72, 70)
         Me.Button5.TabIndex = 11
@@ -650,7 +643,7 @@ Partial Class frmMain
         'Button4
         '
         Me.Button4.Image = CType(resources.GetObject("Button4.Image"), System.Drawing.Image)
-        Me.Button4.Location = New System.Drawing.Point(716, 166)
+        Me.Button4.Location = New System.Drawing.Point(934, 164)
         Me.Button4.Name = "Button4"
         Me.Button4.Size = New System.Drawing.Size(72, 70)
         Me.Button4.TabIndex = 11
@@ -661,7 +654,7 @@ Partial Class frmMain
         'Button3
         '
         Me.Button3.Image = CType(resources.GetObject("Button3.Image"), System.Drawing.Image)
-        Me.Button3.Location = New System.Drawing.Point(716, 90)
+        Me.Button3.Location = New System.Drawing.Point(934, 88)
         Me.Button3.Name = "Button3"
         Me.Button3.Size = New System.Drawing.Size(72, 70)
         Me.Button3.TabIndex = 11
@@ -672,7 +665,7 @@ Partial Class frmMain
         'Button2
         '
         Me.Button2.Image = CType(resources.GetObject("Button2.Image"), System.Drawing.Image)
-        Me.Button2.Location = New System.Drawing.Point(716, 14)
+        Me.Button2.Location = New System.Drawing.Point(934, 12)
         Me.Button2.Name = "Button2"
         Me.Button2.Size = New System.Drawing.Size(72, 70)
         Me.Button2.TabIndex = 11
@@ -680,11 +673,29 @@ Partial Class frmMain
         Me.Button2.TextAlign = System.Drawing.ContentAlignment.BottomCenter
         Me.Button2.UseVisualStyleBackColor = True
         '
+        'PictureBox2
+        '
+        Me.PictureBox2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.PictureBox2.Location = New System.Drawing.Point(300, 163)
+        Me.PictureBox2.Name = "PictureBox2"
+        Me.PictureBox2.Size = New System.Drawing.Size(100, 142)
+        Me.PictureBox2.TabIndex = 9
+        Me.PictureBox2.TabStop = False
+        '
+        'Ethernet
+        '
+        Me.Ethernet.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.Ethernet.Location = New System.Drawing.Point(6, 21)
+        Me.Ethernet.Name = "Ethernet"
+        Me.Ethernet.Size = New System.Drawing.Size(15, 15)
+        Me.Ethernet.TabIndex = 4
+        Me.Ethernet.TabStop = False
+        '
         'frmMain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(800, 655)
+        Me.ClientSize = New System.Drawing.Size(1029, 655)
         Me.Controls.Add(Me.PictureBox3)
         Me.Controls.Add(Me.Button9)
         Me.Controls.Add(Me.Button8)
@@ -715,11 +726,11 @@ Partial Class frmMain
         Me.Text = " "
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
-        CType(Me.Ethernet, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBox2.ResumeLayout(False)
         Me.GroupBox2.PerformLayout()
-        CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PictureBox3, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.Ethernet, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 

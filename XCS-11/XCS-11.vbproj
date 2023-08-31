@@ -201,5 +201,20 @@
   <ItemGroup>
     <None Include="Resources\ARW09LT1.ICO" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Slide22.JPG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Slide23.JPG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Slide24.JPG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Slide25.JPG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Slide26.JPG" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>

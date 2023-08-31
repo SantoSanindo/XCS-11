@@ -1,5 +1,6 @@
 ﻿Option Explicit On
 Imports System.Threading
+Imports System.Net
 Public Class frmMain
     Public BoardCount As Integer
     Dim ReadTagFlag As Boolean
@@ -9,19 +10,33 @@ Public Class frmMain
     Public ScanMode As Integer
     Dim AssyBuf As String
     Dim currentDate As DateTime = DateTime.Now
+    Dim SlideCount As Integer
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        If Dir(My.Application.Info.DirectoryPath & "\Config.INI") = "" Then
+        SlideCount = 22
+        Dim fullPath As String = System.AppDomain.CurrentDomain.BaseDirectory
+        Console.WriteLine(fullPath)
+        Dim projectFolder As String = fullPath.Replace("\XCS-11\bin\Debug\", "").Replace("\XCS-11\bin\Release\", "")
+        Console.WriteLine(projectFolder)
+        If Dir(projectFolder & "\Config\Config.INI") = "" Then 'This is to initalize the program during start up
             MsgBox("Config.INI is missing")
             End
         End If
-        If Dir(My.Application.Info.DirectoryPath & "\Setup.INI") = "" Then
-            MsgBox("Setup.INI is missing")
-            End
-        End If
-        ReadINI((My.Application.Info.DirectoryPath & "\Config.INI"))
+
+        ReadINI(projectFolder & "\Config\Config.INI")
+        Console.WriteLine(INIMATERIALPATH)
+        GetLastConfig()
         frmMsg.Show()
         frmMsg.Label1.Text = "Establishing connection with PLC..."
         frmModbus.Show()
+
+        Ethernet.BackColor = Color.Lime
+
+        Dim strHostName As String = Dns.GetHostName()
+        Dim hostname As IPHostEntry = Dns.GetHostByName(strHostName)
+        Dim ip As IPAddress() = hostname.AddressList
+        Label18.Text = "PC Name : " & strHostName
+        Label19.Text = "PC IP Address : " & ip(0).ToString
+
         frmModbus.Hide()
         Thread.Sleep(10)
         Reset_PLC()
@@ -822,4 +837,10 @@ ErrorHandler:
 ErrorHandler:
         Return False
     End Function
+    Private Sub Timer2_Tick(sender As Object, e As EventArgs) Handles Timer2.Tick
+        PictureBox3.Image = My.Resources.ResourceManager.GetObject("Slide" & SlideCount)
+        PictureBox3.SizeMode = PictureBoxSizeMode.StretchImage
+        SlideCount = SlideCount + 1
+        If SlideCount = 26 Then SlideCount = 22
+    End Sub
 End Class
