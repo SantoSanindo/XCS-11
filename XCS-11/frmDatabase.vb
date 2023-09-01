@@ -38,10 +38,10 @@
             'create a new textbox and set its properties
 
             newbox = New TextBox
-            newbox.Size = New Drawing.Size(150, 20)
-            newbox.Location = New Point(320, 165 + 25 * (i - 1))
+            newbox.Size = New Drawing.Size(200, 20)
+            newbox.Location = New Point(240, 165 + 25 * (i - 1))
             newbox.Name = "TextBox" & i
-            newbox.Font = New Font("Arial", 12)
+            newbox.Font = New Font("Arial", 10)
 
             'connect it to a handler, save a reference to the array and add it to the form controls
 
@@ -53,10 +53,10 @@
             'create a new textbox and set its properties
 
             newbox = New TextBox
-            newbox.Size = New Drawing.Size(150, 20)
-            newbox.Location = New Point(480, 290 + 25 * ((j - 15) - 1))
+            newbox.Size = New Drawing.Size(200, 20)
+            newbox.Location = New Point(450, 290 + 25 * ((j - 15) - 1))
             newbox.Name = "TextBox" & j
-            newbox.Font = New Font("Arial", 12)
+            newbox.Font = New Font("Arial", 10)
 
             'connect it to a handler, save a reference to the array and add it to the form controls
 
@@ -68,10 +68,10 @@
             'create a new textbox and set its properties
 
             newbox = New TextBox
-            newbox.Size = New Drawing.Size(150, 20)
-            newbox.Location = New Point(640, 40 + 25 * ((k - 15) - 1))
+            newbox.Size = New Drawing.Size(200, 20)
+            newbox.Location = New Point(660, 40 + 25 * ((k - 15) - 1))
             newbox.Name = "TextBox" & k
-            newbox.Font = New Font("Arial", 12)
+            newbox.Font = New Font("Arial", 10)
 
             'connect it to a handler, save a reference to the array and add it to the form controls
 

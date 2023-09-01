@@ -19,7 +19,6 @@ Public Class frmMain
             MsgBox("Config.INI is missing")
             End
         End If
-
         ReadINI(projectFolder & "\Config\Config.INI")
         GetLastConfig()
         frmMsg.Show()

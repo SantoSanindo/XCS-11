@@ -119,7 +119,7 @@ Partial Class frmDatabase
         'Button1
         '
         Me.Button1.Image = CType(resources.GetObject("Button1.Image"), System.Drawing.Image)
-        Me.Button1.Location = New System.Drawing.Point(694, 58)
+        Me.Button1.Location = New System.Drawing.Point(854, 58)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(75, 72)
         Me.Button1.TabIndex = 3
@@ -131,7 +131,7 @@ Partial Class frmDatabase
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(800, 450)
+        Me.ClientSize = New System.Drawing.Size(943, 450)
         Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.Label4)
         Me.Controls.Add(Me.Label3)
@@ -143,6 +143,7 @@ Partial Class frmDatabase
         Me.Controls.Add(Me.TextBox101)
         Me.Controls.Add(Me.ComboBox1)
         Me.Name = "frmDatabase"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "frmDatabase"
         Me.ResumeLayout(False)
         Me.PerformLayout()

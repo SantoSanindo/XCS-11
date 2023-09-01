@@ -31,7 +31,7 @@ Partial Class frmMaterial
         'Button1
         '
         Me.Button1.Image = CType(resources.GetObject("Button1.Image"), System.Drawing.Image)
-        Me.Button1.Location = New System.Drawing.Point(535, 96)
+        Me.Button1.Location = New System.Drawing.Point(621, 92)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(85, 78)
         Me.Button1.TabIndex = 3
@@ -63,11 +63,12 @@ Partial Class frmMaterial
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(632, 636)
+        Me.ClientSize = New System.Drawing.Size(720, 636)
         Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.Button1)
         Me.Name = "frmMaterial"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "frmMaterial"
         Me.ResumeLayout(False)
         Me.PerformLayout()
