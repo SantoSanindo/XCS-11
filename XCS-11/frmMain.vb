@@ -91,7 +91,7 @@ Public Class frmMain
         'Timer1.Enabled = True
     End Sub
     Public Sub Reset_PLC()
-        Call frmModbus.tulisModbus(500, 1)
+        Call frmModbus.tulisModbus(40500, 1)
     End Sub
     Private Function LoadParameter(csmodel As String) As Boolean
         Dim query = "Select * FROM Parameter WHERE ModelName = '" & csmodel & "'"
@@ -125,25 +125,25 @@ Public Class frmMain
     Private Function LoadParameter2PLC() As Boolean
         On Error GoTo ErrorHandler
         If LoadWOfrRFID.JobProductMaterial = "Zamak" Then
-            If Not frmModbus.tulisModbus(100, 1) Then Exit Function
+            If Not frmModbus.tulisModbus(40100, 1) Then Exit Function
         Else
-            If Not frmModbus.tulisModbus(100, 0) Then Exit Function
+            If Not frmModbus.tulisModbus(40100, 0) Then Exit Function
         End If
         If LoadWOfrRFID.JobProductThread = "1/2 NPT" Then
             If LoadWOfrRFID.JobProductMaterial = "Zamak" Then
-                If Not frmModbus.tulisModbus(107, 2) Then Exit Function
+                If Not frmModbus.tulisModbus(40107, 2) Then Exit Function
             Else
-                If Not frmModbus.tulisModbus(107, 1) Then Exit Function
+                If Not frmModbus.tulisModbus(40107, 1) Then Exit Function
             End If
         Else
-            If Not frmModbus.tulisModbus(107, 0) Then Exit Function
+            If Not frmModbus.tulisModbus(40107, 0) Then Exit Function
         End If
         If LoadWOfrRFID.JobButtonType = "Yes" Then
-            If Not frmModbus.tulisModbus(108, 0) Then Exit Function
+            If Not frmModbus.tulisModbus(40108, 0) Then Exit Function
         Else
-            If Not frmModbus.tulisModbus(108, 1) Then Exit Function
+            If Not frmModbus.tulisModbus(40108, 1) Then Exit Function
         End If
-        If Not frmModbus.tulisModbus(600, 1) Then Exit Function 'reset screw counter
+        If Not frmModbus.tulisModbus(40600, 1) Then Exit Function 'reset screw counter
         Return True
         Exit Function
 ErrorHandler:
@@ -166,7 +166,7 @@ ErrorHandler:
         Do While Not EOF(FNum)
             LineStr = LineInput(FNum)
             Part.PartNos(i) = LineStr
-            Part.PartPLCWord(i) = 200 + i
+            Part.PartPLCWord(i) = 40200 + i
             i = i + 1
         Loop
         FileClose(FNum)
@@ -368,7 +368,7 @@ WOChange:
         ReadTagFlag = False
 NoChange:
         Dim Station_status As Long
-        Station_status = frmModbus.bacaModbus(101)
+        Station_status = frmModbus.bacaModbus(40101)
         Ethernet.BackColor = Color.Lime
         TextBox4.Text = Station_status
 
@@ -386,8 +386,8 @@ NoChange:
             Case 4
                 lbl_msg.Text = ""
                 Txt_Msg.Text = ""
-                If frmModbus.bacaModbus(102) = 1 Then 'Pass
-                    If Not frmModbus.tulisModbus(101, 10) Then
+                If frmModbus.bacaModbus(40102) = 1 Then 'Pass
+                    If Not frmModbus.tulisModbus(40101, 10) Then
                         Txt_Msg.Text = "--> Unable to communicate with PLC - %MW101"
                         Exit Sub
                     End If
@@ -403,7 +403,7 @@ NoChange:
                     lbl_msg.Text = ""
                     Dim Failcode As Integer
 
-                    Failcode = frmModbus.bacaModbus(110)
+                    Failcode = frmModbus.bacaModbus(40110)
                     If Failcode = 5 Then
                         Txt_Msg.Text = "--> Wrong body material"
                     ElseIf Failcode = 6 Then
@@ -414,7 +414,7 @@ NoChange:
                         Txt_Msg.Text = "--> No Insulation base"
                     End If
                     Txt_Msg.BackColor = Color.Red
-                    If Not frmModbus.tulisModbus(101, 10) Then
+                    If Not frmModbus.tulisModbus(40101, 10) Then
                         Txt_Msg.Text = "--> Unable to communicate with PLC - %MW101"
                         Exit Sub
                     End If
@@ -702,19 +702,19 @@ ErrorHandler:
     End Sub
 
     Private Sub Button7_Click(sender As Object, e As EventArgs) Handles Button7.Click
-        Call frmModbus.tulisModbus(101, 10)
+        Call frmModbus.tulisModbus(40101, 10)
     End Sub
 
     Private Sub Button6_Click(sender As Object, e As EventArgs) Handles Button6.Click
         If Button6.Text = "Eye Open" Then
-            If Not frmModbus.tulisModbus(109, 1) Then
+            If Not frmModbus.tulisModbus(40109, 1) Then
                 Txt_Msg.Text = "--> Unable to communicate with PLC - %MW109"
                 Exit Sub
             End If
             Button6.Text = "Eye Close"
 
         ElseIf Button6.Text = "Eye Close" Then
-            If Not frmModbus.tulisModbus(109, 0) Then
+            If Not frmModbus.tulisModbus(40109, 0) Then
                 Txt_Msg.Text = "--> Unable to communicate with PLC - %MW109"
                 Exit Sub
             End If
