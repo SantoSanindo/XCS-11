@@ -14,16 +14,13 @@ Public Class frmMain
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         SlideCount = 22
         Dim fullPath As String = System.AppDomain.CurrentDomain.BaseDirectory
-        Console.WriteLine(fullPath)
         Dim projectFolder As String = fullPath.Replace("\XCS-11\bin\Debug\", "").Replace("\XCS-11\bin\Release\", "")
-        Console.WriteLine(projectFolder)
         If Dir(projectFolder & "\Config\Config.INI") = "" Then 'This is to initalize the program during start up
             MsgBox("Config.INI is missing")
             End
         End If
 
         ReadINI(projectFolder & "\Config\Config.INI")
-        Console.WriteLine(INIMATERIALPATH)
         GetLastConfig()
         frmMsg.Show()
         frmMsg.Label1.Text = "Establishing connection with PLC..."
@@ -229,7 +226,6 @@ ErrorHandler:
         Ethernet.BackColor = Color.Black
         Tagnos = RD_MULTI_RFID("0000", 10)
         Tagid = RD_MULTI_RFID("0040", 3) 'Read Tag ID
-
         If Tagnos = "NOK" Then GoTo NoChange
         If Tagnos = "MASTER" Then
             If Tagid = lbl_tagnos.Text Then GoTo NoChange
@@ -374,7 +370,7 @@ WOChange:
 NoChange:
         Dim Station_status As Long
         Station_status = frmModbus.bacaModbus(101)
-        Ethernet.BackColor = Color.LightGreen
+        Ethernet.BackColor = Color.Lime
         TextBox4.Text = Station_status
 
         Select Case Station_status
@@ -698,12 +694,12 @@ ErrorHandler:
     End Sub
 
     Private Sub Button9_Click(sender As Object, e As EventArgs) Handles Button9.Click
-        Call frmModbus.tulisModbus(1, 1)
+        Call frmModbus.tulisModbus(40001, 1)
         ScanMode = 0
     End Sub
 
     Private Sub Button8_Click(sender As Object, e As EventArgs) Handles Button8.Click
-        Call frmModbus.tulisModbus(600, 1)
+        Call frmModbus.tulisModbus(40600, 1)
     End Sub
 
     Private Sub Button7_Click(sender As Object, e As EventArgs) Handles Button7.Click
@@ -733,7 +729,6 @@ ErrorHandler:
             AssyBuf = Barcode_Comm.ReadExisting()
             If InStr(1, AssyBuf, vbCrLf) <> 0 Then
                 Me.Invoke(Sub()
-                              Console.WriteLine("Invoke")
                               Txt_Msg.BackColor = Color.LightGray
                               Txt_Msg.Text = ""
                               Label12.Text = ""

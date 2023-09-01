@@ -44,6 +44,7 @@ Partial Class frmMain
         Me.Label15 = New System.Windows.Forms.Label()
         Me.lbl_msg = New System.Windows.Forms.Label()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.Ethernet = New System.Windows.Forms.PictureBox()
         Me.Label20 = New System.Windows.Forms.Label()
         Me.Label19 = New System.Windows.Forms.Label()
         Me.Label18 = New System.Windows.Forms.Label()
@@ -52,6 +53,7 @@ Partial Class frmMain
         Me.Label21 = New System.Windows.Forms.Label()
         Me.TextBox4 = New System.Windows.Forms.TextBox()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
+        Me.PictureBox2 = New System.Windows.Forms.PictureBox()
         Me.lbl_fw = New System.Windows.Forms.Label()
         Me.lbl_datecode = New System.Windows.Forms.Label()
         Me.lbl_articlenos = New System.Windows.Forms.Label()
@@ -81,13 +83,11 @@ Partial Class frmMain
         Me.Button4 = New System.Windows.Forms.Button()
         Me.Button3 = New System.Windows.Forms.Button()
         Me.Button2 = New System.Windows.Forms.Button()
-        Me.PictureBox2 = New System.Windows.Forms.PictureBox()
-        Me.Ethernet = New System.Windows.Forms.PictureBox()
         Me.GroupBox1.SuspendLayout()
-        Me.GroupBox2.SuspendLayout()
-        CType(Me.PictureBox3, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Ethernet, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.GroupBox2.SuspendLayout()
+        CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PictureBox3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Label1
@@ -300,6 +300,15 @@ Partial Class frmMain
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Ethernet Connection"
         '
+        'Ethernet
+        '
+        Me.Ethernet.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.Ethernet.Location = New System.Drawing.Point(6, 21)
+        Me.Ethernet.Name = "Ethernet"
+        Me.Ethernet.Size = New System.Drawing.Size(15, 15)
+        Me.Ethernet.TabIndex = 4
+        Me.Ethernet.TabStop = False
+        '
         'Label20
         '
         Me.Label20.AutoSize = True
@@ -402,6 +411,15 @@ Partial Class frmMain
         Me.GroupBox2.Size = New System.Drawing.Size(428, 557)
         Me.GroupBox2.TabIndex = 10
         Me.GroupBox2.TabStop = False
+        '
+        'PictureBox2
+        '
+        Me.PictureBox2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.PictureBox2.Location = New System.Drawing.Point(300, 163)
+        Me.PictureBox2.Name = "PictureBox2"
+        Me.PictureBox2.Size = New System.Drawing.Size(100, 142)
+        Me.PictureBox2.TabIndex = 9
+        Me.PictureBox2.TabStop = False
         '
         'lbl_fw
         '
@@ -673,24 +691,6 @@ Partial Class frmMain
         Me.Button2.TextAlign = System.Drawing.ContentAlignment.BottomCenter
         Me.Button2.UseVisualStyleBackColor = True
         '
-        'PictureBox2
-        '
-        Me.PictureBox2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.PictureBox2.Location = New System.Drawing.Point(300, 163)
-        Me.PictureBox2.Name = "PictureBox2"
-        Me.PictureBox2.Size = New System.Drawing.Size(100, 142)
-        Me.PictureBox2.TabIndex = 9
-        Me.PictureBox2.TabStop = False
-        '
-        'Ethernet
-        '
-        Me.Ethernet.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.Ethernet.Location = New System.Drawing.Point(6, 21)
-        Me.Ethernet.Name = "Ethernet"
-        Me.Ethernet.Size = New System.Drawing.Size(15, 15)
-        Me.Ethernet.TabIndex = 4
-        Me.Ethernet.TabStop = False
-        '
         'frmMain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -726,11 +726,11 @@ Partial Class frmMain
         Me.Text = " "
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
+        CType(Me.Ethernet, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBox2.ResumeLayout(False)
         Me.GroupBox2.PerformLayout()
-        CType(Me.PictureBox3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.Ethernet, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PictureBox3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 

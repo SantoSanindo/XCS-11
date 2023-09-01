@@ -34,15 +34,15 @@ Module modGeneral
         Return YY & WW
     End Function
     Public Function Check_Serialnos(AAAAAARRRYYWW As String) As String
-        '        Dim query = "Select * FROM SERIAL WHERE RVYYWW = '" & AAAAAARRRYYWW & "'"
-        '        Dim dt = KoneksiDB.bacaData(query).Tables(0)
-        '        Dim tempor As String
-        '        On Error GoTo ErrorHandler
+        Dim query = "Select * FROM SERIAL WHERE RVYYWW = '" & AAAAAARRRYYWW & "'"
+        Dim dt = KoneksiDB.bacaData(query).Tables(0)
+        Dim tempor As String
+        On Error GoTo ErrorHandler
 
-        '        tempor = dt.Rows(0).Item("LASTNOS")
-        '        Return tempor
+        tempor = dt.Rows(0).Item("LASTNOS")
+        Return tempor
 
-        'ErrorHandler:
+ErrorHandler:
         Return "00000"
     End Function
     Public Function CheckTotalItem(csmodel As String) As Integer
@@ -72,7 +72,7 @@ ErrorHandler:
     Public Function UpdateWO(WO As String, updateqty As String) As Boolean
         On Error GoTo ErrorHandler
         Dim konek As New SqlConnection(Database)
-        Dim sql As String = "Update * From STN3 Set WONOS = '" & WO & "', OUTPUT = '" & updateqty & "' Where WONOS = '" & WO & "'"
+        Dim sql As String = "Update STN3 Set OUTPUT = '" & updateqty & "' Where WONOS = '" & WO & "'"
         konek.Open()
         Dim sc As New SqlCommand(sql, konek)
         Dim adapter As New SqlDataAdapter(sc)
@@ -84,23 +84,25 @@ ErrorHandler:
         End If
         Return True
 ErrorHandler:
+        MsgBox("Error Update WO!")
         Return False
     End Function
     Public Function AddWO(WO As String) As Boolean
         On Error GoTo ErrorHandler
         Dim konek As New SqlConnection(Database)
-        Dim sql As String = "Update * From STN3 Set WONOS = '" & WO & "', OUTPUT = '" & 0 & "' Where WONOS = '" & WO & "'"
+        Dim sql As String = "INSERT INTO STN3 (WONOS,OUTPUT) VALUES ('" & WO & "', 0)"
         konek.Open()
         Dim sc As New SqlCommand(sql, konek)
         Dim adapter As New SqlDataAdapter(sc)
         If adapter.SelectCommand.ExecuteNonQuery().ToString() = 1 Then
-            'MsgBox("Saving succeed!")
+            MsgBox("Saving succeed!")
             konek.Close()
         Else
             MsgBox("Saving Failed!")
         End If
         Return True
 ErrorHandler:
+        MsgBox("Error AddWO!")
         Return False
     End Function
     Public Function RetrieveWOQty(WO As String) As String
@@ -127,29 +129,35 @@ ErrorHandler:
 
         Lastcount = Right(Lastpsn, 5)
         anrvdc = Left(Lastpsn, 13)
-
+        Console.WriteLine("LastCount : " & Lastcount)
+        Console.WriteLine("anrvdc : " & anrvdc)
         Dim konek As New SqlConnection(Database)
-        Dim sql As String = "Update * From SERIAL Set LASTNOS = '" & Lastcount & "' Where RVYYWW = '" & anrvdc & "'"
+        Dim sql As String = "Update SERIAL Set LASTNOS = '" & Lastcount & "' Where RVYYWW = '" & anrvdc & "'"
         konek.Open()
         Dim sc As New SqlCommand(sql, konek)
         Dim adapter As New SqlDataAdapter(sc)
         If adapter.SelectCommand.ExecuteNonQuery().ToString() = 1 Then
-            'MsgBox("Saving succeed!")
+            'MsgBox("Saving succeed!1")
             konek.Close()
+            Return True
         Else
-            MsgBox("Saving Failed!")
+            'MsgBox("Saving Failed!1")
+            Return False
         End If
 
 ErrorHandler:
-        sql = "Update * From SERIAL Set RVYYWW = '" & anrvdc & "', LASTNOS = '" & Lastcount & "'"
-        konek.Open()
-        sc = New SqlCommand(sql, konek)
-        adapter = New SqlDataAdapter(sc)
-        If adapter.SelectCommand.ExecuteNonQuery().ToString() = 1 Then
-            'MsgBox("Saving succeed!")
-            konek.Close()
+        Dim nkonek As New SqlConnection(Database)
+        Dim nsql As String = "INSERT INTO SERIAL (RVYYWW,LASTNOS) VALUES ('" & anrvdc & "', '" & Lastcount & "')"
+        nkonek.Open()
+        Dim nsc As New SqlCommand(nsql, nkonek)
+        Dim nadapter As New SqlDataAdapter(nsc)
+        If nadapter.SelectCommand.ExecuteNonQuery().ToString() = 1 Then
+            'MsgBox("Saving succeed!2")
+            nkonek.Close()
+            Return True
         Else
-            MsgBox("Saving Failed!")
+            'MsgBox("Saving Failed!2")
+            Return False
         End If
     End Function
 End Module
