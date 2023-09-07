@@ -84,11 +84,11 @@ Public Class frmMain
             End
         End If
 
-        'RFID_Comm.Open()
-        'Barcode_Comm.Open()
+        RFID_Comm.Open()
+        Barcode_Comm.Open()
 
         frmMsg.Hide()
-        'Timer1.Enabled = True
+        Timer1.Enabled = True
     End Sub
     Public Sub Reset_PLC()
         Call frmModbus.tulisModbus(40500, 1)
