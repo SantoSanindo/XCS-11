@@ -721,9 +721,10 @@ Partial Class frmMain
         Me.Controls.Add(Me.lbl_currentref)
         Me.Controls.Add(Me.lbl_WOnos)
         Me.Controls.Add(Me.Label1)
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "frmMain"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = " "
+        Me.Text = " Body Assembly - Developed by SESEA"
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
         CType(Me.Ethernet, System.ComponentModel.ISupportInitialize).EndInit()

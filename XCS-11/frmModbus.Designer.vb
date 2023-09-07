@@ -231,6 +231,7 @@ Partial Class frmModbus
         Me.Controls.Add(Me.Label5)
         Me.Controls.Add(Me.Label4)
         Me.Controls.Add(Me.Label1)
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "frmModbus"
         Me.Text = "frmModbus"
         Me.ResumeLayout(False)

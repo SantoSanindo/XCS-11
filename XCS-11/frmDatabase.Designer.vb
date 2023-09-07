@@ -142,9 +142,10 @@ Partial Class frmDatabase
         Me.Controls.Add(Me.TextBox102)
         Me.Controls.Add(Me.TextBox101)
         Me.Controls.Add(Me.ComboBox1)
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "frmDatabase"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "frmDatabase"
+        Me.Text = "Database"
         Me.ResumeLayout(False)
         Me.PerformLayout()
 

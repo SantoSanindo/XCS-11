@@ -85,7 +85,7 @@ Public Class frmMain
         End If
 
         'RFID_Comm.Open()
-        Barcode_Comm.Open()
+        'Barcode_Comm.Open()
 
         frmMsg.Hide()
         'Timer1.Enabled = True
