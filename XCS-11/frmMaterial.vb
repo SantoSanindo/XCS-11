@@ -1,80 +1,24 @@
 ﻿Public Class frmMaterial
-    Private boxes(30) As TextBox
-    Private labels(30) As Label
     Private Sub frmMaterial_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         LoadParameter()
     End Sub
     Private Sub LoadParameter()
         Dim Filenum1 As Integer
         Dim LineStr As String
+        Dim textBoxes As List(Of TextBox) = New List(Of TextBox) From {TextBox1, TextBox2, TextBox3, TextBox4, TextBox5, TextBox6, TextBox7, TextBox8, TextBox9, TextBox10, TextBox11, TextBox12, TextBox13, TextBox14, TextBox15, TextBox16, TextBox17, TextBox18, TextBox19, TextBox20, TextBox21, TextBox22, TextBox23, TextBox24, TextBox25, TextBox26, TextBox27, TextBox28, TextBox29, TextBox30}
+
         Filenum1 = FreeFile()
         FileOpen(Filenum1, INIMATERIALPATH & "Rack\" & "Station3", OpenMode.Input)
-        Dim newbox As TextBox
-        Dim label As Label
 
-        For i As Integer = 1 To 15
-
-            'create a new textbox and set its properties
-
-            newbox = New TextBox
-            newbox.Size = New Drawing.Size(200, 20)
-            newbox.Location = New Point(110, 100 + 25 * (i - 1))
-            newbox.Name = "TextBox" & i
+        For i As Integer = 0 To textBoxes.Count - 1
             If Not EOF(Filenum1) Then
                 LineStr = LineInput(Filenum1)
-                newbox.Text = LineStr
+                textBoxes(i).Text = LineStr
             Else
-                newbox.Text = ""
+                textBoxes(i).Text = String.Empty
             End If
-            newbox.Font = New Font("Arial", 10)
-
-            label = New Label
-            label.Size = New Drawing.Size(150, 20)
-            label.Location = New Point(70, 100 + 25 * (i - 1))
-            label.Name = "Label" & i
-            label.Text = "#" & i
-            label.Font = New Font("Arial", 10)
-
-            'connect it to a handler, save a reference to the array and add it to the form controls
-
-            boxes(i) = newbox
-            Me.Controls.Add(newbox)
-            labels(i) = label
-            Me.Controls.Add(label)
-
         Next
 
-        For j As Integer = 16 To 30
-
-            'create a new textbox and set its properties
-
-            newbox = New TextBox
-            newbox.Size = New Drawing.Size(200, 20)
-            newbox.Location = New Point(380, 100 + 25 * ((j - 15) - 1))
-            newbox.Name = "TextBox" & j
-            If Not EOF(Filenum1) Then
-                LineStr = LineInput(Filenum1)
-                newbox.Text = LineStr
-            Else
-                newbox.Text = ""
-            End If
-            newbox.Font = New Font("Arial", 12)
-
-            label = New Label
-            label.Size = New Drawing.Size(150, 20)
-            label.Location = New Point(340, 100 + 25 * ((j - 15) - 1))
-            label.Name = "Label" & j
-            label.Text = "#" & j
-            label.Font = New Font("Arial", 10)
-
-            'connect it to a handler, save a reference to the array and add it to the form controls
-
-            boxes(j) = newbox
-            Me.Controls.Add(newbox)
-            labels(j) = label
-            Me.Controls.Add(label)
-
-        Next
         FileClose(Filenum1)
     End Sub
 

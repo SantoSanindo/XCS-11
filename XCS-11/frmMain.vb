@@ -84,11 +84,11 @@ Public Class frmMain
             End
         End If
 
-        RFID_Comm.Open()
-        Barcode_Comm.Open()
+        'RFID_Comm.Open()
+        'Barcode_Comm.Open()
 
         frmMsg.Hide()
-        Timer1.Enabled = True
+        'Timer1.Enabled = True
     End Sub
     Public Sub Reset_PLC()
         Call frmModbus.tulisModbus(40500, 1)
@@ -549,7 +549,7 @@ ErrorHandler:
         ElseIf Len(temp) = 4 Then
             temp = "0" & temp
         End If
-        NextCounter = temp
+        Return temp
     End Function
     Private Function ZbrPrinter1() As Boolean
         Dim FILENO As Integer
@@ -723,14 +723,12 @@ ErrorHandler:
     End Sub
 
     Private Sub Barcode_Comm_DataReceived(sender As Object, e As IO.Ports.SerialDataReceivedEventArgs) Handles Barcode_Comm.DataReceived
-        Console.WriteLine(currentDate.Date & "," & Now.ToLongTimeString)
         If ScanMode = 0 Then
             AssyBuf = Barcode_Comm.ReadExisting()
             If InStr(1, AssyBuf, vbCrLf) <> 0 Then
                 Me.Invoke(Sub()
                               Txt_Msg.BackColor = Color.LightGray
                               Txt_Msg.Text = ""
-                              Label12.Text = ""
                               AssyBuf = Mid(AssyBuf, 1, InStr(1, AssyBuf, vbCr) - 1)
                               PictureBox2.Image = Nothing
 

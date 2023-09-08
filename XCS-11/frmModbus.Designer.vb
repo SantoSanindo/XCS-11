@@ -233,6 +233,7 @@ Partial Class frmModbus
         Me.Controls.Add(Me.Label1)
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "frmModbus"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "frmModbus"
         Me.ResumeLayout(False)
         Me.PerformLayout()

@@ -630,9 +630,9 @@ Partial Class frmMain
         '
         Me.PictureBox3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.PictureBox3.ErrorImage = Nothing
-        Me.PictureBox3.Location = New System.Drawing.Point(434, 91)
+        Me.PictureBox3.Location = New System.Drawing.Point(434, 98)
         Me.PictureBox3.Name = "PictureBox3"
-        Me.PictureBox3.Size = New System.Drawing.Size(458, 476)
+        Me.PictureBox3.Size = New System.Drawing.Size(458, 469)
         Me.PictureBox3.TabIndex = 12
         Me.PictureBox3.TabStop = False
         '
