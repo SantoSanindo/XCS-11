@@ -84,11 +84,11 @@ Public Class frmMain
             End
         End If
 
-        'RFID_Comm.Open()
-        'Barcode_Comm.Open()
+        RFID_Comm.Open()
+        Barcode_Comm.Open()
 
         frmMsg.Hide()
-        'Timer1.Enabled = True
+        Timer1.Enabled = True
     End Sub
     Public Sub Reset_PLC()
         Call frmModbus.tulisModbus(40500, 1)
@@ -830,9 +830,10 @@ ErrorHandler:
         Return False
     End Function
     Private Sub Timer2_Tick(sender As Object, e As EventArgs) Handles Timer2.Tick
-        PictureBox3.Image = My.Resources.ResourceManager.GetObject("Slide" & SlideCount)
+        Dim imageFileName = INISLIDEPATH & "\Slide" & SlideCount & ".JPG"
+        PictureBox3.Image = Image.FromFile(imageFileName)
         PictureBox3.SizeMode = PictureBoxSizeMode.StretchImage
         SlideCount = SlideCount + 1
-        If SlideCount = 26 Then SlideCount = 22
+        If SlideCount = 27 Then SlideCount = 22
     End Sub
 End Class
