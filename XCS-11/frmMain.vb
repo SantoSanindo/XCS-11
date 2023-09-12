@@ -3,7 +3,6 @@ Imports System.Threading
 Imports System.Net
 Public Class frmMain
     Public BoardCount As Integer
-    Dim ReadTagFlag As Boolean
     Public BodyTest As Boolean
     Public Action As Integer
     Public ItemsScanCompleteFlag As Boolean 'True when all items are scanned
@@ -221,7 +220,6 @@ ErrorHandler:
         Dim TagQty As String
         Dim Tagid As String
 
-        ReadTagFlag = True
         Ethernet.BackColor = Color.Black
         Tagnos = RD_MULTI_RFID("0000", 10)
         Tagid = RD_MULTI_RFID("0040", 3) 'Read Tag ID
@@ -275,35 +273,30 @@ WOChange:
             If Tagref = "NOK" Then
                 Txt_Msg.Text = Txt_Msg.Text & "--> Unable to read from RFID Tag" & vbCrLf
                 Txt_Msg.Text = Txt_Msg.Text & "--> Change Series fail" & vbCrLf
-                ReadTagFlag = False
                 Exit Sub
             End If
             TagQty = RD_MULTI_RFID("0028", 10) 'Read WO Qty from Tag
             If TagQty = "NOK" Then
                 Txt_Msg.Text = Txt_Msg.Text & "--> Unable to read from RFID Tag" & vbCrLf
                 Txt_Msg.Text = Txt_Msg.Text & "--> Change Series fail" & vbCrLf
-                ReadTagFlag = False
                 Exit Sub
             End If
             Tagid = RD_MULTI_RFID("0040", 3) 'Read Tag ID
             If Tagid = "NOK" Then
                 Txt_Msg.Text = Txt_Msg.Text & "--> Unable to read from RFID Tag" & vbCrLf
                 Txt_Msg.Text = Txt_Msg.Text & "--> Change Series fail" & vbCrLf
-                ReadTagFlag = False
                 Exit Sub
             End If
             'Check if reference is valid from the database
             If Not RefCheck(Tagref) Then
                 Txt_Msg.Text = Txt_Msg.Text & "--> Invalid Reference" & vbCrLf
                 Txt_Msg.Text = Txt_Msg.Text & "--> Change Series fail" & vbCrLf
-                ReadTagFlag = False
                 Exit Sub
             End If
             Txt_Msg.Text = Txt_Msg.Text & "loading parameters of new reference..." & vbCrLf
             If Not LoadModelMaterial(Tagref) Then
                 Txt_Msg.Text = Txt_Msg.Text & "--> Unable to load Model parameter" & vbCrLf
                 Txt_Msg.Text = Txt_Msg.Text & "--> Change Series fail" & vbCrLf
-                ReadTagFlag = False
                 Exit Sub
             End If
 
@@ -322,7 +315,6 @@ WOChange:
             If Not ActivateRackLED() Then
                 Txt_Msg.Text = Txt_Msg.Text & "--> Unable to communicate with PLC" & vbCrLf
                 Txt_Msg.Text = Txt_Msg.Text & "--> Change Series fail" & vbCrLf
-                ReadTagFlag = False
                 Exit Sub
             End If
             'Send parameter to PLC
@@ -365,7 +357,7 @@ WOChange:
             PSNFileInfo.WONos = LoadWOfrRFID.JobNos
 
         End If
-        ReadTagFlag = False
+        
 NoChange:
         Dim Station_status As Long
         Station_status = frmModbus.bacaModbus(40101)
@@ -551,6 +543,51 @@ ErrorHandler:
         End If
         Return temp
     End Function
+    Private Function ZbrPrinter(SerialNos As String) As Boolean
+        Dim FILENO As Integer
+        Dim strCustFileName As String
+        FILENO = FreeFile()
+        Dim Article As String
+        On Error Resume Next
+
+        '========= Zebra USB PORT ==========
+        Dim lhPrinter As Long
+        Dim lReturn As Long
+        Dim lpcWritten As Long
+        Dim lDoc As Long
+        Dim MyDocInfo As DOCINFO
+        Dim sPrinterName As String
+
+        Article = Mid(SerialNos, 1, 6)
+        sPrinterName = "Zebra TLP2844-Z"
+        'lReturn = OpenPrinter(Printer.DeviceName, lhPrinter, 0)
+        lReturn = OpenPrinter(sPrinterName, lhPrinter, 0)
+        If lReturn = 0 Then
+            MsgBox("The Printer Name you typed wasn't recognised.")
+            Exit Function
+        End If
+        MyDocInfo.pDocName = "Servo 3"
+        MyDocInfo.pOutputFile = vbNullString
+        MyDocInfo.pDatatype = vbNullString
+        lDoc = StartDocPrinter(lhPrinter, 1, MyDocInfo)
+        Call StartPagePrinter(lhPrinter)
+        'sWrittendata = "^XA^FO370,60^A0,10,15^FD" & "1234567890" & "^FS^FO310,40^BXN,5,400^FD" & "12345" & "^FS^XZ"
+        sWrittendata = "^XA^FO390,105^A0,25,10^FD" & SerialNos & "^FS^FO265,85^BXN,3,200^FD" & SerialNos & "^FS^XZ"
+        'sWrittendata = "^XA^FS^FO490,32^BXN,3,200^FD" & SerialNos & "^FS^XZ"
+        'Call PrintPSN(sWrittendata)
+        lReturn = WritePrinter(lhPrinter, sWrittendata, Len(sWrittendata), lpcWritten)
+
+        ' read data
+        Dim sReadData As String
+        Dim lpcRead As Long
+
+        lReturn = ReadPrinter(lhPrinter, sReadData, Len(sReadData), lpcRead)
+
+        lReturn = EndPagePrinter(lhPrinter)
+        lReturn = EndDocPrinter(lhPrinter)
+        lReturn = ClosePrinter(lhPrinter)
+        '=======================================
+    End Function
     Private Function ZbrPrinter1() As Boolean
         Dim FILENO As Integer
         Dim strCustFileName As String
@@ -723,7 +760,7 @@ ErrorHandler:
     End Sub
 
     Private Sub Barcode_Comm_DataReceived(sender As Object, e As IO.Ports.SerialDataReceivedEventArgs) Handles Barcode_Comm.DataReceived
-        If ScanMode = 0 Then
+        If ScanMode = 0 Then 'scanning of PCBA, Electromagnet
             AssyBuf = Barcode_Comm.ReadExisting()
             If InStr(1, AssyBuf, vbCrLf) <> 0 Then
                 Me.Invoke(Sub()
@@ -789,7 +826,7 @@ SKIPVERIFY:
                               ScanMode = 1
                           End Sub)
             End If
-        ElseIf ScanMode = 1 Then
+        ElseIf ScanMode = 1 Then 'Used after the PSN is printed and to scan by operator
             AssyBuf = Barcode_Comm.ReadExisting()
             If InStr(1, AssyBuf, vbCrLf) <> 0 Then
                 Me.Invoke(Sub()
@@ -800,7 +837,7 @@ SKIPVERIFY:
                               TextBox3.BackColor = Color.White
                           End Sub)
             End If
-        ElseIf ScanMode = 2 Then
+        ElseIf ScanMode = 2 Then 'when process is in progress, all scanning barocodes are ignored
             AssyBuf = Barcode_Comm.ReadExisting()
             AssyBuf = ""
         End If
@@ -830,10 +867,18 @@ ErrorHandler:
         Return False
     End Function
     Private Sub Timer2_Tick(sender As Object, e As EventArgs) Handles Timer2.Tick
-        Dim imageFileName = INISLIDEPATH & "\Slide" & SlideCount & ".JPG"
+        Dim imageFileName = INISLIDEPATH & "Slide" & SlideCount & ".JPG"
         PictureBox3.Image = Image.FromFile(imageFileName)
         PictureBox3.SizeMode = PictureBoxSizeMode.StretchImage
         SlideCount = SlideCount + 1
         If SlideCount = 27 Then SlideCount = 22
+    End Sub
+
+    Private Sub Button10_Click(sender As Object, e As EventArgs) Handles Button10.Click
+        Call ZbrPrinter("024V")
+    End Sub
+
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+        Call frmModbus.tulisModbus(40111, 1)
     End Sub
 End Class
